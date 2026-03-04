@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.2.0</version>
+	</parent>
+
+	<groupId>com.example</groupId>
+	<artifactId>replicator</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>debezium-cdc-replicator</name>
+
+	<properties>
+		<java.version>17</java.version>
+		<debezium.version>3.3.2.Final</debezium.version>
+	</properties>
+	<dependencies>
+		<!-- Spring Boot -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+
+		<!-- Debezium Embedded Engine -->
+		<dependency>
+			<groupId>io.debezium</groupId>
+			<artifactId>debezium-api</artifactId>
+			<version>${debezium.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.debezium</groupId>
+			<artifactId>debezium-embedded</artifactId>
+			<version>${debezium.version}</version>
+		</dependency>
+
+		<!-- SQL Server Connector -->
+		<dependency>
+			<groupId>io.debezium</groupId>
+			<artifactId>debezium-connector-sqlserver</artifactId>
+			<version>${debezium.version}</version>
+		</dependency>
+
+		<!-- JDBC Storage (offsets + schema history in DB) -->
+		<dependency>
+			<groupId>io.debezium</groupId>
+			<artifactId>debezium-storage-jdbc</artifactId>
+			<version>${debezium.version}</version>
+		</dependency>
+
+		<!-- PostgreSQL JDBC Driver (target) -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.7.1</version>
+		</dependency>
+
+		<!-- Microsoft SQL Server JDBC Driver (source) -->
+		<dependency>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>mssql-jdbc</artifactId>
+			<version>12.4.2.jre11</version>
+		</dependency>
+
+		<!-- Jackson for JSON parsing of CDC events -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+
+		<!-- Lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.30</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+</project>
